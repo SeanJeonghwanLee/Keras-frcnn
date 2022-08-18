@@ -280,8 +280,8 @@ for epoch_num in range(num_epochs):
 
 				break
 
- 		#except Exception as e:
- 		#	print(f'Exception: {e}')
- 		#	continue
+ 		except Exception as e:
+ 			print(f'Exception: {e}')
+ 			break
 
 print('Training complete, exiting.')
