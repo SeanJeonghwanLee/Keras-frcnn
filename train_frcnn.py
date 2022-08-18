@@ -153,7 +153,7 @@ model_rpn.compile(optimizer=optimizer, loss=[losses.rpn_loss_cls(num_anchors), l
 model_classifier.compile(optimizer=optimizer_classifier, loss=[losses.class_loss_cls, losses.class_loss_regr(len(classes_count)-1)], metrics={f'dense_class_{len(classes_count)}': 'accuracy'})
 model_all.compile(optimizer='sgd', loss='mae')
 
-epoch_length = 516
+epoch_length = 4
 num_epochs = int(options.num_epochs)
 iter_num = 0
 
@@ -237,7 +237,7 @@ for epoch_num in range(num_epochs):
 
 			loss_class = model_classifier.train_on_batch([X, X2[:, sel_samples, :]], [Y1[:, sel_samples, :], Y2[:, sel_samples, :]])
 
-			losses[iter_num, 0] = loss_rpn[1]
+			4[iter_num, 0] = loss_rpn[1]
 			losses[iter_num, 1] = loss_rpn[2]
 
 			losses[iter_num, 2] = loss_class[1]
@@ -260,7 +260,7 @@ for epoch_num in range(num_epochs):
 				rpn_accuracy_for_epoch = []
 
 				if C.verbose:
-					print(f'Mean number of bounding boxes from RPN overlapping ground truth boxes: {mean_overlapping_boxes}')
+					print(f'Mean number of bounding boxes from RPN overlapping ground truth boxes: {mean_overlapping_bboxes}')
 					print(f'Classifier accuracy for bounding boxes from RPN: {class_acc}')
 					print(f'Loss RPN classifier: {loss_rpn_cls}')
 					print(f'Loss RPN regression: {loss_rpn_regr}')
