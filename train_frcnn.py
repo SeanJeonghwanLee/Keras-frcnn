@@ -276,7 +276,7 @@ for epoch_num in range(num_epochs):
 					if C.verbose:
 						print(f'Total loss decreased from {best_loss} to {curr_loss}, saving weights')
 					best_loss = curr_loss
-					model_all.save_weights(model_path_regex.group(1)) # + "_" + '{:04d}'.format(epoch_num) + model_path_regex.group(2)
+					model_all.save_weights(model_path_regex.group(1) + model_path_regex.group(2)) # + "_" + '{:04d}'.format(epoch_num) 
 
 				break
 
