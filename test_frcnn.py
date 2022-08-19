@@ -253,5 +253,5 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 
 	# cv2.imshow(‘img’, img)
 	# cv2.waitKey(0)
-	#cv2.imwrite('./results_imgs-fp-mappen-test/{}.png'.format(os.path.splitext(str(img_name))[0]),img)
+	cv2.imwrite('./results_imgs-fp-mappen-test/{}.png'.format(os.path.splitext(str(img_name))[0]),img)
 
