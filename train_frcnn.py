@@ -80,8 +80,8 @@ if options.input_weight_path:
 	C.base_net_weights = options.input_weight_path
 else:
 	# set the path to weights based on backend and model
-	#C.base_net_weights = keras.applications.resnet50.ResNet50(weights='imagenet')
-	C.base_net_weights = nn.get_weight_path()
+	C.base_net_weights = keras.applications.resnet50.ResNet50(weights='imagenet')
+	#C.base_net_weights = nn.get_weight_path()
 
 train_imgs, classes_count, class_mapping = get_data(options.train_path)
 #val_imgs, _, _ = get_data(options.train_path, 'test')
