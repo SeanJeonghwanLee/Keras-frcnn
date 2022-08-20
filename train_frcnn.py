@@ -16,7 +16,7 @@ from keras_frcnn import config, data_generators
 from keras_frcnn import losses as losses
 import keras_frcnn.roi_helpers as roi_helpers
 from keras.utils import generic_utils
-import keras
+#import keras
 
 sys.setrecursionlimit(40000)
 
