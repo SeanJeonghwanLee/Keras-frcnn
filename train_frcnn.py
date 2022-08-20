@@ -16,7 +16,6 @@ from keras_frcnn import config, data_generators
 from keras_frcnn import losses as losses
 import keras_frcnn.roi_helpers as roi_helpers
 from keras.utils import generic_utils
-#import keras
 
 sys.setrecursionlimit(40000)
 
@@ -80,11 +79,9 @@ if options.input_weight_path:
 	C.base_net_weights = options.input_weight_path
 else:
 	# set the path to weights based on backend and model
-	#C.base_net_weights = keras.applications.resnet50.ResNet50(weights='imagenet')
 	C.base_net_weights = nn.get_weight_path()
-	
 
-train_imgs, classes_count, class_mapping = get_data(options.train_path)
+train_imgs, classes_count, class_mapping = get_data(options.train_path, 'trainval')
 #val_imgs, _, _ = get_data(options.train_path, 'test')
 
 if 'bg' not in classes_count:
@@ -150,8 +147,8 @@ except:
 	print('Could not load pretrained model weights. Weights can be found in the keras application folder \
 		https://github.com/fchollet/keras/tree/master/keras/applications')
 
-optimizer = Adam(lr=1e-3)
-optimizer_classifier = Adam(lr=1e-3)
+optimizer = Adam(lr=1e-5)
+optimizer_classifier = Adam(lr=1e-5)
 model_rpn.compile(optimizer=optimizer, loss=[losses.rpn_loss_cls(num_anchors), losses.rpn_loss_regr(num_anchors)])
 model_classifier.compile(optimizer=optimizer_classifier, loss=[losses.class_loss_cls, losses.class_loss_regr(len(classes_count)-1)], metrics={f'dense_class_{len(classes_count)}': 'accuracy'})
 model_all.compile(optimizer='sgd', loss='mae')
