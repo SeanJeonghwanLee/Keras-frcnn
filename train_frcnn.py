@@ -147,8 +147,8 @@ except:
 	print('Could not load pretrained model weights. Weights can be found in the keras application folder \
 		https://github.com/fchollet/keras/tree/master/keras/applications')
 
-optimizer = Adam(lr=1e-5)
-optimizer_classifier = Adam(lr=1e-5)
+optimizer = Adam(lr=1e-3, beta_1=0.99)
+optimizer_classifier = Adam(lr=1e-3, beta_1=0.99)
 model_rpn.compile(optimizer=optimizer, loss=[losses.rpn_loss_cls(num_anchors), losses.rpn_loss_regr(num_anchors)])
 model_classifier.compile(optimizer=optimizer_classifier, loss=[losses.class_loss_cls, losses.class_loss_regr(len(classes_count)-1)], metrics={f'dense_class_{len(classes_count)}': 'accuracy'})
 model_all.compile(optimizer='sgd', loss='mae')
@@ -276,8 +276,7 @@ for epoch_num in range(num_epochs):
 					if C.verbose:
 						print(f'Total loss decreased from {best_loss} to {curr_loss}, saving weights')
 					best_loss = curr_loss
-				model_all.save_weights(model_path_regex.group(1) + "_" + '{:04d}'.format(epoch_num) + model_path_regex.group(2))
-
+				model_all.save_weights(model_path_regex.group(1) + model_path_regex.group(2)) #+ "_" + '{:04d}'.format(epoch_num) 
 				break
 
 		except Exception as e:
